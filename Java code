@@ -1,0 +1,65 @@
+import java.util.*;
+
+class LibrarySystem {
+    String bookName;
+    String studentName;
+    int borrowDay;
+    int returnDay;
+    int fine;
+
+    Scanner sc = new Scanner(System.in);
+
+    // Borrow Book
+    void borrowBook() {
+        System.out.print("Enter Student Name: ");
+        studentName = sc.nextLine();
+
+        System.out.print("Enter Book Name: ");
+        bookName = sc.nextLine();
+
+        System.out.print("Enter Borrow Day: ");
+        borrowDay = sc.nextInt();
+
+        System.out.println("Book Borrowed Successfully!\n");
+    }
+
+    // Return Book
+    void returnBook() {
+        System.out.print("Enter Return Day: ");
+        returnDay = sc.nextInt();
+
+        calculateFine();
+    }
+
+    // Fine Calculation
+    void calculateFine() {
+        int days = returnDay - borrowDay;
+
+        if (days > 7) {
+            fine = (days - 7) * 2; // ₹2 per day after 7 days
+        } else {
+            fine = 0;
+        }
+
+        displayDetails();
+    }
+
+    // Display Details
+    void displayDetails() {
+        System.out.println("\n----- Library Details -----");
+        System.out.println("Student Name: " + studentName);
+        System.out.println("Book Name: " + bookName);
+        System.out.println("Borrow Day: " + borrowDay);
+        System.out.println("Return Day: " + returnDay);
+        System.out.println("Fine: ₹" + fine);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        LibrarySystem obj = new LibrarySystem();
+
+        obj.borrowBook();
+        obj.returnBook();
+    }
+}
